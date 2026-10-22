@@ -69,7 +69,6 @@ export default function StudentProfile() {
       />
 
       <div className="card">
-        {/* Profile Card Header with avatar */}
         <div
           style={{
             padding: '28px',
@@ -117,10 +116,8 @@ export default function StudentProfile() {
           </div>
         </div>
 
-        {/* Profile Form */}
         <form onSubmit={handleSave} style={{ padding: '28px' }}>
           <div className="form-row">
-            {/* Full Name */}
             <div className="form-group">
               <label className="form-label">
                 <span>Full Name</span>
@@ -136,7 +133,6 @@ export default function StudentProfile() {
               {errors.name && <div className="form-error-msg">{errors.name}</div>}
             </div>
 
-            {/* Student ID / Roll No */}
             <div className="form-group">
               <label className="form-label">
                 <span>Student Roll Number</span>
@@ -154,7 +150,6 @@ export default function StudentProfile() {
           </div>
 
           <div className="form-row">
-            {/* Email Address */}
             <div className="form-group">
               <label className="form-label">
                 <span>College Email</span>
@@ -170,7 +165,6 @@ export default function StudentProfile() {
               {errors.email && <div className="form-error-msg">{errors.email}</div>}
             </div>
 
-            {/* Phone Number */}
             <div className="form-group">
               <label className="form-label">
                 <span>Phone Number</span>
@@ -186,7 +180,6 @@ export default function StudentProfile() {
           </div>
 
           <div className="form-row">
-            {/* Department */}
             <div className="form-group">
               <label className="form-label">
                 <span>Department</span>
@@ -202,7 +195,6 @@ export default function StudentProfile() {
               {errors.department && <div className="form-error-msg">{errors.department}</div>}
             </div>
 
-            {/* Academic Year */}
             <div className="form-group">
               <label className="form-label">
                 <span>Academic Year</span>
@@ -222,7 +214,6 @@ export default function StudentProfile() {
             </div>
           </div>
 
-          {/* Form Actions */}
           {isEditing && (
             <div
               style={{

@@ -32,7 +32,6 @@ export default function MyCertificates() {
                 transition: 'transform 0.2s, box-shadow 0.2s'
               }}
             >
-              {/* Certificate Card Header with decorative styling */}
               <div
                 style={{
                   background: 'linear-gradient(135deg, #0B1F3A 0%, #1E3A8A 100%)',
@@ -79,7 +78,6 @@ export default function MyCertificates() {
                   {cert.eventName}
                 </h3>
 
-                {/* Background decorative watermark */}
                 <div
                   style={{
                     position: 'absolute',
@@ -93,7 +91,6 @@ export default function MyCertificates() {
                 </div>
               </div>
 
-              {/* Certificate Details */}
               <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.84rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -114,7 +111,6 @@ export default function MyCertificates() {
                   </div>
                 </div>
 
-                {/* Actions */}
                 <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--card-border)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                   <button
                     className="btn btn-secondary btn-sm"
@@ -142,7 +138,6 @@ export default function MyCertificates() {
         />
       )}
 
-      {/* Preview Modal */}
       <CertificatePreview
         isOpen={!!selectedCert}
         onClose={() => setSelectedCert(null)}

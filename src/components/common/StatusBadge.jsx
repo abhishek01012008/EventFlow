@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function StatusBadge({ status }) {
-  // Determine badge color based on status
   let badgeColor = 'status-info';
 
   if (status === 'Registered' || status === 'Completed' || status === 'Active') {

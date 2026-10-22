@@ -25,7 +25,6 @@ function createWindow() {
 
   if (isDev) {
     mainWindow.loadURL(devServerUrl).catch(() => {
-      // If dev server not yet ready, retry shortly
       setTimeout(() => {
         mainWindow.loadURL(devServerUrl);
       }, 1000);
@@ -43,7 +42,6 @@ function createWindow() {
   });
 }
 
-// IPC for optional desktop notification demonstration
 ipcMain.on('app-notification', (event, { title, body }) => {
   if (Notification.isSupported()) {
     new Notification({

@@ -36,7 +36,6 @@ export default function EventDetails() {
     );
   }
 
-  // Registration state for current student
   const studentReg = registrations.find(r => r.studentId === currentUser?.id && r.eventId === event.id);
   const isRegistered = studentReg && studentReg.status === 'Registered';
   const isPast = event.status === 'Past';
@@ -53,7 +52,6 @@ export default function EventDetails() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '1100px', margin: '0 auto' }}>
-      {/* Back button */}
       <div>
         <button
           className="btn btn-secondary btn-sm"
@@ -64,9 +62,7 @@ export default function EventDetails() {
         </button>
       </div>
 
-      {/* Main Event Header Card */}
       <div className="card" style={{ overflow: 'hidden' }}>
-        {/* Banner Poster */}
         <div style={{ position: 'relative', width: '100%', height: '320px', backgroundColor: '#0B1F3A' }}>
           <img
             src={event.poster}
@@ -85,7 +81,6 @@ export default function EventDetails() {
             }}
           />
 
-          {/* Badges on poster */}
           <div style={{ position: 'absolute', top: '20px', left: '24px', display: 'flex', gap: '10px' }}>
             <span
               style={{
@@ -116,7 +111,6 @@ export default function EventDetails() {
             </button>
           </div>
 
-          {/* Bottom Title on poster */}
           <div style={{ position: 'absolute', bottom: '24px', left: '28px', right: '28px' }}>
             <h1 style={{ color: '#FFFFFF', fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.25 }}>
               {event.title}
@@ -138,7 +132,6 @@ export default function EventDetails() {
           </div>
         </div>
 
-        {/* Action Bar / Status banner below poster */}
         <div
           style={{
             padding: '16px 28px',
@@ -179,7 +172,6 @@ export default function EventDetails() {
             )}
           </div>
 
-          {/* Action buttons */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {isRegistered ? (
               <button
@@ -203,9 +195,7 @@ export default function EventDetails() {
           </div>
         </div>
 
-        {/* Content Body */}
         <div style={{ padding: '28px', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px' }}>
-          {/* Left Details Column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '12px' }}>
@@ -216,7 +206,6 @@ export default function EventDetails() {
               </p>
             </div>
 
-            {/* Event Highlights */}
             {event.highlights && event.highlights.length > 0 && (
               <div>
                 <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '12px' }}>
@@ -248,7 +237,6 @@ export default function EventDetails() {
             )}
           </div>
 
-          {/* Right Information Sidebar */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
             <div
               style={{
@@ -308,7 +296,6 @@ export default function EventDetails() {
         </div>
       </div>
 
-      {/* Confirmation Dialog before cancelling */}
       <ConfirmDialog
         isOpen={confirmCancelOpen}
         onClose={() => setConfirmCancelOpen(false)}

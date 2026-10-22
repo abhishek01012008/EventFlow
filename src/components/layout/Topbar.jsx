@@ -17,7 +17,6 @@ export default function Topbar() {
 
   const notifMenuRef = useRef(null);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (notifMenuRef.current && !notifMenuRef.current.contains(e.target)) {
@@ -49,14 +48,12 @@ export default function Topbar() {
 
   return (
     <header className="topbar">
-      {/* Page Title / Breadcrumb */}
       <div className="topbar-left">
         <div>
           <h2 className="page-title">{getPageTitle()}</h2>
         </div>
       </div>
 
-      {/* Center Search */}
       <form className="topbar-search" onSubmit={handleSearchSubmit}>
         <Search className="search-icon" />
         <input
@@ -67,9 +64,7 @@ export default function Topbar() {
         />
       </form>
 
-      {/* Topbar Right Controls */}
       <div className="topbar-right">
-        {/* Notifications Icon with popover */}
         <div style={{ position: 'relative' }} ref={notifMenuRef}>
           <button
             className="topbar-icon-btn"
@@ -146,7 +141,6 @@ export default function Topbar() {
           )}
         </div>
 
-        {/* Student User Pill */}
         <div
           className="topbar-user"
           onClick={() => navigate('/student/profile')}

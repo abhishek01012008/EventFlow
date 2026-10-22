@@ -14,7 +14,6 @@ export default function MyRegistrations() {
   const [activeTab, setActiveTab] = useState('upcoming');
   const [eventToCancel, setEventToCancel] = useState(null);
 
-  // Get student's registrations joined with events
   const myRegistrations = registrations
     .filter(r => r.studentId === currentUser.id)
     .map(r => {
@@ -24,9 +23,8 @@ export default function MyRegistrations() {
         event: evt
       };
     })
-    .filter(r => r.event); // exclude if event was deleted
+    .filter(r => r.event);
 
-  // Tab filtering
   const upcomingRegs = myRegistrations.filter(r => r.status === 'Registered' && r.event.status !== 'Past');
   const pastRegs = myRegistrations.filter(r => r.status === 'Completed' || (r.status === 'Registered' && r.event.status === 'Past'));
   const cancelledRegs = myRegistrations.filter(r => r.status === 'Cancelled');
@@ -50,7 +48,6 @@ export default function MyRegistrations() {
         subtitle="Manage your registered college events, schedules, and enrollment status"
       />
 
-      {/* Tabs */}
       <div className="tabs-nav">
         <button
           className={`tab-btn ${activeTab === 'upcoming' ? 'active' : ''}`}
@@ -75,7 +72,6 @@ export default function MyRegistrations() {
         </button>
       </div>
 
-      {/* Registration Items List */}
       {displayedList.length > 0 ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {displayedList.map(item => (
@@ -90,7 +86,6 @@ export default function MyRegistrations() {
                 flexWrap: 'wrap'
               }}
             >
-              {/* Event Thumbnail */}
               <div
                 style={{
                   width: '120px',
@@ -112,7 +107,6 @@ export default function MyRegistrations() {
                 />
               </div>
 
-              {/* Event Info */}
               <div style={{ flex: 1, minWidth: '240px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                   <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#2563EB', textTransform: 'uppercase' }}>
@@ -148,7 +142,6 @@ export default function MyRegistrations() {
                 </div>
               </div>
 
-              {/* Registration Meta */}
               <div style={{ textAlign: 'right', minWidth: '150px' }}>
                 <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>Registered On</div>
                 <div style={{ fontSize: '0.86rem', fontWeight: 600, color: 'var(--text-main)' }}>
@@ -156,7 +149,6 @@ export default function MyRegistrations() {
                 </div>
               </div>
 
-              {/* Actions */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <button
                   className="btn btn-secondary btn-sm"
@@ -192,7 +184,6 @@ export default function MyRegistrations() {
         />
       )}
 
-      {/* Confirmation Dialog */}
       <ConfirmDialog
         isOpen={!!eventToCancel}
         onClose={() => setEventToCancel(null)}

@@ -12,7 +12,6 @@ export default function ParticipationHistory() {
   const [searchTerm, setSearchTerm] = useState('');
   const [previewCert, setPreviewCert] = useState(null);
 
-  // Completed or participated events
   const historyRecords = registrations
     .filter(r => r.studentId === currentUser.id && (r.status === 'Completed' || r.attendance === 'Present' || r.certificateId))
     .map(r => {
@@ -26,7 +25,6 @@ export default function ParticipationHistory() {
     })
     .filter(r => r.event);
 
-  // Filtered records by search term
   const filteredRecords = historyRecords.filter(r => {
     return (
       r.event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -42,7 +40,6 @@ export default function ParticipationHistory() {
         subtitle="Historical transcript of your completed college events and verified credentials"
       />
 
-      {/* Search Bar */}
       <div className="card" style={{ padding: '16px 20px', display: 'flex', gap: '14px', alignItems: 'center' }}>
         <div style={{ position: 'relative', flex: 1 }}>
           <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
@@ -57,7 +54,6 @@ export default function ParticipationHistory() {
         </div>
       </div>
 
-      {/* History Table (without Attended / Not Attended column) */}
       {filteredRecords.length > 0 ? (
         <div className="table-container">
           <table className="data-table">
@@ -134,7 +130,6 @@ export default function ParticipationHistory() {
         />
       )}
 
-      {/* Certificate Modal */}
       <CertificatePreview
         isOpen={!!previewCert}
         onClose={() => setPreviewCert(null)}

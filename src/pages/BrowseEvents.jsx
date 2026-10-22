@@ -15,7 +15,6 @@ export default function BrowseEvents() {
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [sortBy, setSortBy] = useState('date-asc');
 
-  // Sync with searchParams
   useEffect(() => {
     const q = searchParams.get('search');
     if (q !== null) {
@@ -26,20 +25,16 @@ export default function BrowseEvents() {
   const categories = ['All', 'Technical', 'Cultural', 'Sports', 'Workshop', 'Hackathon'];
   const statusFilters = ['All', 'Upcoming', 'Ongoing', 'Past'];
 
-  // Filter & Sort Logic
   const filteredEvents = useMemo(() => {
     return events.filter(evt => {
-      // Search filter
       const matchesSearch =
         evt.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         evt.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         evt.venue.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (evt.organizerName && evt.organizerName.toLowerCase().includes(searchTerm.toLowerCase()));
 
-      // Category filter
       const matchesCategory = selectedCategory === 'All' || evt.category.toLowerCase() === selectedCategory.toLowerCase();
 
-      // Status filter
       const matchesStatus = selectedStatus === 'All' || evt.status.toLowerCase() === selectedStatus.toLowerCase();
 
       return matchesSearch && matchesCategory && matchesStatus;
@@ -74,7 +69,6 @@ export default function BrowseEvents() {
         subtitle="Discover workshops, fests, hackathons, and sports tournaments across campus"
       />
 
-      {/* Filter and Search Bar */}
       <div
         className="card"
         style={{
@@ -85,7 +79,6 @@ export default function BrowseEvents() {
         }}
       >
         <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-          {/* Search Input */}
           <div style={{ position: 'relative', flex: 1, minWidth: '260px' }}>
             <Search
               size={18}
@@ -118,7 +111,6 @@ export default function BrowseEvents() {
             )}
           </div>
 
-          {/* Time Status Filter */}
           <div style={{ minWidth: '160px' }}>
             <select
               className="form-control"
@@ -131,7 +123,6 @@ export default function BrowseEvents() {
             </select>
           </div>
 
-          {/* Sort By Dropdown */}
           <div style={{ minWidth: '180px' }}>
             <select
               className="form-control"
@@ -152,7 +143,6 @@ export default function BrowseEvents() {
           )}
         </div>
 
-        {/* Category Pills */}
         <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
           {categories.map(cat => (
             <button
@@ -167,14 +157,12 @@ export default function BrowseEvents() {
         </div>
       </div>
 
-      {/* Results Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
           Showing <strong>{filteredEvents.length}</strong> events
         </span>
       </div>
 
-      {/* Events Grid */}
       {filteredEvents.length > 0 ? (
         <div className="events-grid">
           {filteredEvents.map(event => (

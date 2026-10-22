@@ -35,7 +35,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
           textAlign: 'center'
         }}
       >
-        {/* Subtle Watermark Emblem */}
         <div
           style={{
             position: 'absolute',
@@ -49,7 +48,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
           <Award size={260} color="#2563EB" />
         </div>
 
-        {/* Institution Header */}
         <div style={{ marginBottom: '18px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#2563EB', marginBottom: '6px' }}>
             <Award size={24} />
@@ -65,7 +63,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
           </p>
         </div>
 
-        {/* Certificate Title */}
         <div style={{ margin: '20px 0 16px' }}>
           <span
             style={{
@@ -87,7 +84,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
           This is proudly conferred upon
         </p>
 
-        {/* Recipient */}
         <div style={{ margin: '14px 0 18px' }}>
           <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0F172A', letterSpacing: '-0.02em' }}>
             {certificate.studentName || 'Student Name'}
@@ -105,7 +101,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
           "{certificate.eventName}"
         </h3>
 
-        {/* Signatures & Seal */}
         <div
           style={{
             display: 'flex',
@@ -116,7 +111,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
             borderTop: '1px dashed #E2E8F0'
           }}
         >
-          {/* Organizer */}
           <div style={{ textAlign: 'center', width: '180px' }}>
             <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0F172A', borderBottom: '1px solid #94A3B8', paddingBottom: '4px' }}>
               {certificate.organizerName || 'Dr. Amit Kumar'}
@@ -126,7 +120,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
             </div>
           </div>
 
-          {/* Golden Seal Emblem */}
           <div
             style={{
               width: '68px',
@@ -147,7 +140,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
             </span>
           </div>
 
-          {/* Director */}
           <div style={{ textAlign: 'center', width: '180px' }}>
             <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0F172A', borderBottom: '1px solid #94A3B8', paddingBottom: '4px' }}>
               {certificate.directorName || 'Dr. V. K. Verma'}
@@ -158,7 +150,6 @@ export default function CertificatePreview({ isOpen, onClose, certificate }) {
           </div>
         </div>
 
-        {/* Verification meta */}
         <div style={{ marginTop: '24px', fontSize: '0.72rem', color: '#94A3B8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span>Certificate ID: <strong>{certificate.certificateNo || 'EF-2026-GEN'}</strong></span>
           <span>Issued Date: {certificate.issueDate}</span>

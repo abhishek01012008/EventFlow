@@ -15,12 +15,10 @@ export default function Sidebar() {
   const { currentUser, registrations } = useApp();
   const navigate = useNavigate();
 
-  // Dynamic count for student's active registrations
   const myRegisteredCount = registrations.filter(r => r.studentId === currentUser?.id && r.status === 'Registered').length;
 
   return (
     <aside className="sidebar">
-      {/* Brand */}
       <div className="sidebar-brand">
         <div className="sidebar-logo">
           <GraduationCap size={22} />
@@ -31,7 +29,6 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Student Navigation */}
       <nav className="sidebar-nav">
         <div className="sidebar-section-title">Navigation</div>
         <NavLink to="/student/dashboard" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
@@ -61,7 +58,6 @@ export default function Sidebar() {
         </NavLink>
       </nav>
 
-      {/* Footer Student User Info */}
       <div className="sidebar-footer">
         <div
           className="sidebar-user-pill"

@@ -1,4 +1,3 @@
-// Student Mock Data for EventFlow
 
 export const initialUsers = [
   {

@@ -32,7 +32,6 @@ export default function EventCard({ event, onRegister, showQuickActions = true }
           src={event.poster}
           alt={event.title}
           onError={(e) => {
-            // High-contrast clean fallback poster gradient
             e.target.style.display = 'none';
             e.target.parentElement.style.background = 'linear-gradient(135deg, #0B1F3A 0%, #1E3A8A 50%, #2563EB 100%)';
           }}

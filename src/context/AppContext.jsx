@@ -10,7 +10,6 @@ import {
 const AppContext = createContext();
 
 export function AppProvider({ children }) {
-  // Safe localStorage helper
   const getStored = (key, fallback) => {
     try {
       const saved = localStorage.getItem(key);
@@ -36,7 +35,6 @@ export function AppProvider({ children }) {
 
   const [toasts, setToasts] = useState([]);
 
-  // Toast Helper
   const addToast = ({ title, message, type = 'success' }) => {
     const id = Date.now().toString() + Math.random().toString(36).substring(2, 5);
     setToasts(prev => [...prev, { id, title, message, type }]);
@@ -49,7 +47,6 @@ export function AppProvider({ children }) {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
-  // Sync to localStorage
   useEffect(() => {
     try {
       localStorage.setItem('eventflow_role', JSON.stringify('student'));
@@ -64,7 +61,6 @@ export function AppProvider({ children }) {
     }
   }, [users, events, registrations, certificates, recentActivity, settings]);
 
-  // Apply theme attribute to root
   useEffect(() => {
     if (settings.theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
@@ -73,17 +69,14 @@ export function AppProvider({ children }) {
     }
   }, [settings.theme]);
 
-  // Derive Current Student User
   const currentUser = React.useMemo(() => {
     return users.find(u => u.role === 'student' && u.id === 'usr-stu-1') || users[0];
   }, [users]);
 
-  // Event Registration for current student
   const registerForEvent = (eventId) => {
     const event = events.find(e => e.id === eventId);
     if (!event) return false;
 
-    // Check existing
     const existing = registrations.find(r => r.studentId === currentUser.id && r.eventId === eventId);
     if (existing && existing.status === 'Registered') {
       addToast({
@@ -95,7 +88,6 @@ export function AppProvider({ children }) {
     }
 
     if (existing && existing.status === 'Cancelled') {
-      // Re-activate registration
       setRegistrations(prev => prev.map(r => r.id === existing.id ? { ...r, status: 'Registered', registrationDate: new Date().toISOString().slice(0, 10) } : r));
     } else {
       const newReg = {
@@ -109,10 +101,8 @@ export function AppProvider({ children }) {
       setRegistrations(prev => [newReg, ...prev]);
     }
 
-    // Update event registeredCount
     setEvents(prev => prev.map(e => e.id === eventId ? { ...e, registeredCount: (e.registeredCount || 0) + 1 } : e));
 
-    // Add activity
     const activityItem = {
       id: `act-${Date.now()}`,
       type: 'registration',
@@ -132,7 +122,6 @@ export function AppProvider({ children }) {
     return true;
   };
 
-  // Cancel Registration
   const cancelRegistration = (eventId) => {
     const event = events.find(e => e.id === eventId);
     const reg = registrations.find(r => r.studentId === currentUser.id && r.eventId === eventId && r.status === 'Registered');
@@ -160,7 +149,6 @@ export function AppProvider({ children }) {
     return true;
   };
 
-  // Update Profile
   const updateProfile = (profileData) => {
     setUsers(prev => prev.map(u => u.id === currentUser.id ? { ...u, ...profileData } : u));
     addToast({
@@ -170,7 +158,6 @@ export function AppProvider({ children }) {
     });
   };
 
-  // Update Settings
   const updateSettings = (newSettings) => {
     setSettings(prev => ({ ...prev, ...newSettings }));
     addToast({
@@ -180,7 +167,6 @@ export function AppProvider({ children }) {
     });
   };
 
-  // Reset Demo Data
   const resetDemoData = () => {
     localStorage.removeItem('eventflow_users');
     localStorage.removeItem('eventflow_events');

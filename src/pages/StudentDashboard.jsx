@@ -18,18 +18,15 @@ export default function StudentDashboard() {
   const navigate = useNavigate();
   const { currentUser, events, registrations, certificates, recentActivity, registerForEvent } = useApp();
 
-  // Metrics for current student
   const studentRegs = registrations.filter(r => r.studentId === currentUser.id);
   const registeredCount = studentRegs.filter(r => r.status === 'Registered').length;
   const attendedCount = studentRegs.filter(r => r.attendance === 'Present').length;
   const myCertificates = certificates.filter(c => c.studentId === currentUser.id);
 
-  // Upcoming events
   const upcomingEvents = events.filter(e => e.status === 'Upcoming');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-      {/* Welcome Banner */}
       <div
         style={{
           background: 'linear-gradient(135deg, #0B1F3A 0%, #1E3A8A 60%, #2563EB 100%)',
@@ -67,7 +64,6 @@ export default function StudentDashboard() {
           </button>
         </div>
 
-        {/* Decorative background shape */}
         <div
           style={{
             position: 'absolute',
@@ -82,7 +78,6 @@ export default function StudentDashboard() {
         />
       </div>
 
-      {/* Stat Cards Grid */}
       <div className="stats-grid">
         <StatCard
           label="Registered Events"
@@ -118,9 +113,7 @@ export default function StudentDashboard() {
         />
       </div>
 
-      {/* Main Two-Column Layout */}
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
-        {/* Left Column: Upcoming Events */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
@@ -151,9 +144,7 @@ export default function StudentDashboard() {
           </div>
         </div>
 
-        {/* Right Column: Recent Activity & Quick Profile */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {/* Recent Activity Card */}
           <div className="card">
             <div className="card-header">
               <h3 className="card-title">Recent Activity</h3>
@@ -200,7 +191,6 @@ export default function StudentDashboard() {
             </div>
           </div>
 
-          {/* Quick Actions Card */}
           <div className="card" style={{ background: '#FFFFFF' }}>
             <div className="card-header">
               <h3 className="card-title">Quick Student Shortcuts</h3>
