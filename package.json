@@ -28,7 +28,8 @@
     ],
     "mac": {
       "category": "public.app-category.education",
-      "target": ["dir"]
+      "target": ["dmg"],
+      "identity": null
     },
     "win": {
       "target": ["nsis", "zip"]
