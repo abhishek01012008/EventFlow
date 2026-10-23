@@ -17,6 +17,7 @@ import {
   QrCode,
   Download
 } from 'lucide-react';
+import attendanceQrImage from '../assets/attendance-qr-sample.jpg';
 
 export default function EventDetails() {
   const { id } = useParams();
@@ -329,7 +330,7 @@ export default function EventDetails() {
           footer={
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
               <a
-                href="/attendance-qr-sample.jpg"
+                href={attendanceQrImage}
                 download={`${event.title.replace(/[^a-zA-Z0-9_-]/g, '_')}_Attendance_QR.jpg`}
                 className="btn btn-secondary btn-sm"
               >
@@ -356,7 +357,7 @@ export default function EventDetails() {
               }}
             >
               <img
-                src="/attendance-qr-sample.jpg"
+                src={attendanceQrImage}
                 alt="Attendance QR Code"
                 style={{ width: '240px', height: '240px', objectFit: 'contain', display: 'block', borderRadius: 'var(--radius-md)' }}
               />

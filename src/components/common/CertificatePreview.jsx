@@ -1,11 +1,12 @@
 import React from 'react';
 import Modal from './Modal';
 import { Download, Award, CheckCircle2, ExternalLink } from 'lucide-react';
+import certificateSampleImage from '../../assets/certificate-sample.jpg';
 
 export default function CertificatePreview({ isOpen, onClose, certificate }) {
   if (!certificate) return null;
 
-  const certificateImageUrl = '/certificate-sample.jpg';
+  const certificateImageUrl = certificateSampleImage;
 
   const handleDownload = () => {
     const link = document.createElement('a');

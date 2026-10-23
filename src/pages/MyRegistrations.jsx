@@ -7,6 +7,7 @@ import ConfirmDialog from '../components/common/ConfirmDialog';
 import EmptyState from '../components/common/EmptyState';
 import Modal from '../components/common/Modal';
 import { Calendar, MapPin, Clock, ArrowRight, XCircle, QrCode, Download, CheckCircle2 } from 'lucide-react';
+import attendanceQrImage from '../assets/attendance-qr-sample.jpg';
 
 export default function MyRegistrations() {
   const navigate = useNavigate();
@@ -152,7 +153,7 @@ export default function MyRegistrations() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {item.status === 'Registered' && (
+                {item.status !== 'Cancelled' && (
                   <button
                     className="btn btn-primary btn-sm"
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}
@@ -207,7 +208,7 @@ export default function MyRegistrations() {
           footer={
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
               <a
-                href="/attendance-qr-sample.jpg"
+                href={attendanceQrImage}
                 download={`${selectedQrItem.event.title.replace(/[^a-zA-Z0-9_-]/g, '_')}_Attendance_QR.jpg`}
                 className="btn btn-secondary btn-sm"
               >
@@ -234,7 +235,7 @@ export default function MyRegistrations() {
               }}
             >
               <img
-                src="/attendance-qr-sample.jpg"
+                src={attendanceQrImage}
                 alt="Attendance QR Code"
                 style={{ width: '240px', height: '240px', objectFit: 'contain', display: 'block', borderRadius: 'var(--radius-md)' }}
               />
