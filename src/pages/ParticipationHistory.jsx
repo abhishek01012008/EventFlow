@@ -114,7 +114,7 @@ export default function ParticipationHistory() {
                         onClick={() => setPreviewCert(record.certificate)}
                       >
                         <Award size={14} />
-                        <span>View Certificate</span>
+                        <span>Show Certificate</span>
                       </button>
                     )}
                   </td>

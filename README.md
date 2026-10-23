@@ -1,72 +1,77 @@
 # EventFlow — College Event Management & Participation System
 
-**EventFlow** is a modern desktop application built with **Electron**, **React**, and **Vite** for college event management, student registrations, participation tracking, and verified certificate generation.
+**EventFlow** is a desktop application built with **Electron**, **React**, and **Vite** for college event browsing, student registrations, participation tracking, and certificate viewing.
 
 ---
 
-## 🚀 Key Features
+## 🚀 What Is In This Project
 
-- **Desktop Shell**: Native Electron application configured with a 1440 × 900 window, secure IPC boundaries (`contextIsolation: true`, `nodeIntegration: false`), and desktop packaging scripts.
-- **Direct Access**: Opens directly to the student dashboard with zero sign-in friction.
-- **Client Persistence**: State mutations (registrations, cancellations, profile updates) are persisted in `localStorage` and persist across refreshes and restarts.
-- **Usable PDF Downloads**: Download official participation certificates as styled A4 landscape vector PDFs via `jsPDF`.
-- **Search & Filters**: Real-time event search, category filters, and status filtering.
+- **Electron Desktop Shell**: Native desktop application running React with secure IPC boundaries (`contextIsolation: true`, `nodeIntegration: false`).
+- **Student Dashboard**: Immediate access to registered events, participation count, upcoming college events, and recent activity stream.
+- **Browse & Search Events**: Real-time search by title, category, and venue, with category filters (Technical, Cultural, Sports, Workshop) and status filters.
+- **Event Registration & Cancellation**: One-click registration for upcoming events with capacity tracking, and cancellation with confirmation dialogs.
+- **Client Persistence**: Registrations, cancellations, and student profile changes are saved in `localStorage` across app restarts.
+- **Official Certificate Image Viewer**: View and download official participation credentials as high-resolution images (`.jpg`) with certificate ID and student details.
+- **Participation History**: Historical transcript of completed events and participation records.
+- **Student Profile Management**: View and edit student details (Name, Roll Number, Department, Year, Email, Phone).
 
 ---
 
-## 🎨 Design System
+## 🎨 UI & Design
 
-- **Primary Color**: Royal Blue (`#2563EB`)
-- **Sidebar**: Dark Navy (`#0B1F3A`)
-- **Main Background**: Light Gray (`#F5F7FB`)
-- **Card Background**: Clean White (`#FFFFFF`) with subtle border shadows
-- **Typography**: Plus Jakarta Sans & Inter
+- **Theme Palette**: Deep Navy (`#0B1F3A`), Royal Blue (`#2563EB`), Neutral Gray (`#F5F7FB`), and White (`#FFFFFF`).
+- **Typography**: Clean modern sans-serif typography with system fallback.
 - **Status Indicators**:
-  - Success / Active / Registered / Completed: Emerald Green (`#10B981`)
-  - Warning / Upcoming / Ongoing: Amber (`#F59E0B`)
-  - Danger / Cancelled / Past: Rose Red (`#EF4444`)
+  - Registered / Active / Completed: Green
+  - Upcoming / Ongoing: Amber
+  - Cancelled / Past: Red
+- **Components**: Modal overlays, confirmation dialogs, toast notifications, stat KPI cards, and event cards.
 
 ---
 
-## 📑 Student Portal Pages
+## 📑 Application Pages
 
-1. **Student Dashboard** (`/student/dashboard`): Welcome banner, KPI cards (registered, completed events, upcoming, certificates), upcoming event cards, recent activity stream, quick action shortcuts.
-2. **Browse Events** (`/events`): Search by title/venue, filter by category & time (Upcoming, Ongoing, Past), sort by date or popularity, responsive event cards, and quick registration.
-3. **Event Details** (`/events/:id`): Full poster, description, venue, date/time, capacity meters, registration deadline, eligibility, highlights, register and cancellation with confirmation dialog.
-4. **My Registrations** (`/student/registrations`): Tabbed view (Upcoming, Past, Cancelled), registration date, cancel registration with confirmation modal.
-5. **Participation History** (`/student/history`): Historical records of completed events, verified participation status, and direct certificate launcher.
-6. **My Certificates** (`/student/certificates`): Card grid of earned credentials, interactive preview modal with official institutional seal, and PDF download action.
-7. **Student Profile** (`/student/profile`): View and edit name, roll number, department, year, email, and phone with validation and save feedback.
+1. **Student Dashboard** (`/student/dashboard`): Metric cards (Registrations, Completed, Upcoming, Certificates), upcoming events grid, and quick action buttons.
+2. **Browse Events** (`/events`): Search bar, category filter chips, time status tabs, and event cards with registration buttons.
+3. **Event Details** (`/events/:id`): Event banner, description, venue, date & time, registration deadline, eligibility, highlights, and registration / cancellation actions.
+4. **My Registrations** (`/student/registrations`): List of registered events with tab filters (Upcoming, Past, Cancelled) and cancellation button.
+5. **Participation History** (`/student/history`): Table of completed events with attendance status and "Show Certificate" button.
+6. **My Certificates** (`/student/certificates`): Card grid of earned certificates with "Show Certificate" and "Download Certificate" buttons opening the certificate image modal.
+7. **Student Profile** (`/student/profile`): Form to view and update student profile information with localStorage persistence.
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Structure
 
 ```
 EventFlow/
 ├── electron/
-│   ├── main.cjs             # Electron main process (BrowserWindow, secure defaults)
+│   ├── main.cjs             # Electron main process (BrowserWindow, lifecycle, secure config)
 │   └── preload.cjs          # Context bridge exposing safe IPC APIs
+├── public/
+│   ├── certificate-sample.jpg # Official certificate image displayed in certificate viewer
+│   ├── favicon.svg          # App icon
+│   └── icons.svg            # SVG icon assets
 ├── src/
 │   ├── components/
 │   │   ├── common/          # Reusable UI components
-│   │   │   ├── CertificatePreview.jsx  # Official certificate modal & PDF download
-│   │   │   ├── ConfirmDialog.jsx       # Standard confirmation dialog
-│   │   │   ├── EmptyState.jsx          # Illustrated empty states
-│   │   │   ├── EventCard.jsx           # Interactive event cards
-│   │   │   ├── Modal.jsx               # Accessible modal overlay
-│   │   │   ├── PageHeader.jsx          # Uniform page header & action bar
-│   │   │   ├── StatCard.jsx            # Metric KPI card
-│   │   │   ├── StatusBadge.jsx         # Color-coded status badge
+│   │   │   ├── CertificatePreview.jsx  # Certificate image preview modal & download
+│   │   │   ├── ConfirmDialog.jsx       # Confirmation dialog modal
+│   │   │   ├── EmptyState.jsx          # Empty state placeholder
+│   │   │   ├── EventCard.jsx           # Event card component
+│   │   │   ├── Modal.jsx               # Base modal component
+│   │   │   ├── PageHeader.jsx          # Header with title and breadcrumb/subtitle
+│   │   │   ├── StatCard.jsx            # Metric summary card
+│   │   │   ├── StatusBadge.jsx         # Status badge component
 │   │   │   └── Toast.jsx               # Floating toast notifications
 │   │   └── layout/
-│   │       ├── AppLayout.jsx           # Primary app container
-│   │       ├── Sidebar.jsx             # Student navigation sidebar
-│   │       └── Topbar.jsx              # Search, notifications, and student profile
+│   │       ├── AppLayout.jsx           # Main layout with Sidebar and Topbar
+│   │       ├── Sidebar.jsx             # Left navigation menu
+│   │       └── Topbar.jsx              # Header with search and profile summary
 │   ├── context/
-│   │   └── AppContext.jsx   # Shared state, registration handlers, and localStorage sync
+│   │   └── AppContext.jsx   # React Context for events, registrations, certificates, user profile
 │   ├── data/
-│   │   └── mockData.js      # Student and college events mock data
+│   │   └── mockData.js      # Initial seed data for events, registrations, and certificates
 │   ├── pages/
 │   │   ├── BrowseEvents.jsx
 │   │   ├── EventDetails.jsx
@@ -75,62 +80,58 @@ EventFlow/
 │   │   ├── ParticipationHistory.jsx
 │   │   ├── StudentDashboard.jsx
 │   │   └── StudentProfile.jsx
-│   ├── utils/
-│   │   └── generatePdf.js   # High-resolution jsPDF certificate generator
-│   ├── App.jsx              # HashRouter and student route definitions
-│   ├── index.css            # Complete design system tokens, themes, & utility classes
-│   └── main.jsx             # React root mount
+│   ├── App.jsx              # HashRouter and student routes
+│   ├── index.css            # CSS variables, utilities, and component styling
+│   └── main.jsx             # Application entry point
 ├── package.json             # Scripts & dependencies
-├── vite.config.js           # Vite config with relative base for Electron
+├── vite.config.js           # Vite build configuration
 └── README.md
 ```
 
 ---
 
-## 🛠️ Installation & Getting Started
+## 🛠️ How to Run
 
 ### Prerequisites
-- Node.js (v18 or higher recommended)
-- npm (v9 or higher)
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
 
 ### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Run the Application
+### 2. Start the App
 
-#### Option A: Run Electron Desktop App (Recommended)
-This starts the Vite local server and opens the Electron desktop window automatically:
+#### Run Electron Desktop App (Development Mode)
 ```bash
 npm run electron:dev
 ```
+*(Starts Vite dev server on port 5173 and launches Electron)*
 
-#### Option B: Run in Web Browser
-If you want to preview the React frontend in your web browser:
+#### Or Run Web Frontend Only
 ```bash
 npm run dev
 ```
-Then navigate to `http://localhost:5173`.
+*(Available in your browser at `http://localhost:5173`)*
 
 ---
 
-## 📦 Building and Packaging the Desktop App
+## 📦 Build Commands
 
-### Test Production Build
-Builds the Vite static assets and runs Electron against the compiled production bundle:
-```bash
-npm run electron:preview
-```
-
-### Package Desktop App (Unpacked Directory)
-Generates the unpacked standalone desktop application:
-```bash
-npm run electron:pack
-```
-
-### Package Installers (macOS .dmg / Windows .exe / Linux)
-```bash
-npm run electron:dist
-```
-Installers and binaries will be written to the `release/` directory.
+- **Build Frontend Assets**:
+  ```bash
+  npm run build
+  ```
+- **Preview Desktop Build**:
+  ```bash
+  npm run electron:preview
+  ```
+- **Package Standalone Directory**:
+  ```bash
+  npm run electron:pack
+  ```
+- **Generate Installers**:
+  ```bash
+  npm run electron:dist
+  ```

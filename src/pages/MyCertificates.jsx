@@ -3,7 +3,6 @@ import { useApp } from '../context/AppContext';
 import PageHeader from '../components/common/PageHeader';
 import EmptyState from '../components/common/EmptyState';
 import CertificatePreview from '../components/common/CertificatePreview';
-import { downloadCertificatePDF } from '../utils/generatePdf';
 import { Award, Download, Eye } from 'lucide-react';
 
 export default function MyCertificates() {
@@ -117,14 +116,14 @@ export default function MyCertificates() {
                     onClick={() => setSelectedCert(cert)}
                   >
                     <Eye size={15} />
-                    <span>Preview</span>
+                    <span>Show Certificate</span>
                   </button>
                   <button
                     className="btn btn-primary btn-sm"
-                    onClick={() => downloadCertificatePDF(cert)}
+                    onClick={() => setSelectedCert(cert)}
                   >
                     <Download size={15} />
-                    <span>Download PDF</span>
+                    <span>Download Certificate</span>
                   </button>
                 </div>
               </div>
