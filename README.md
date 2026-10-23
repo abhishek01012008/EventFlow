@@ -10,6 +10,7 @@
 - **Student Dashboard**: Immediate access to registered events, participation count, upcoming college events, and recent activity stream.
 - **Browse & Search Events**: Real-time search by title, category, and venue, with category filters (Technical, Cultural, Sports, Workshop) and status filters.
 - **Event Registration & Cancellation**: One-click registration for upcoming events with capacity tracking, and cancellation with confirmation dialogs.
+- **Attendance QR Pass**: Registered events display a dedicated **QR** button to view and save the official entry attendance QR pass image.
 - **Client Persistence**: Registrations, cancellations, and student profile changes are saved in `localStorage` across app restarts.
 - **Official Certificate Image Viewer**: View and download official participation credentials as high-resolution images (`.jpg`) with certificate ID and student details.
 - **Participation History**: Historical transcript of completed events and participation records.
@@ -33,8 +34,8 @@
 
 1. **Student Dashboard** (`/student/dashboard`): Metric cards (Registrations, Completed, Upcoming, Certificates), upcoming events grid, and quick action buttons.
 2. **Browse Events** (`/events`): Search bar, category filter chips, time status tabs, and event cards with registration buttons.
-3. **Event Details** (`/events/:id`): Event banner, description, venue, date & time, registration deadline, eligibility, highlights, and registration / cancellation actions.
-4. **My Registrations** (`/student/registrations`): List of registered events with tab filters (Upcoming, Past, Cancelled) and cancellation button.
+3. **Event Details** (`/events/:id`): Event banner, description, venue, date & time, registration deadline, eligibility, highlights, registration/cancellation actions, and Attendance QR pass.
+4. **My Registrations** (`/student/registrations`): List of registered events with tab filters (Upcoming, Past, Cancelled), cancellation button, and **QR** button to view attendance pass.
 5. **Participation History** (`/student/history`): Table of completed events with attendance status and "Show Certificate" button.
 6. **My Certificates** (`/student/certificates`): Card grid of earned certificates with "Show Certificate" and "Download Certificate" buttons opening the certificate image modal.
 7. **Student Profile** (`/student/profile`): Form to view and update student profile information with localStorage persistence.

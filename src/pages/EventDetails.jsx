@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import StatusBadge from '../components/common/StatusBadge';
 import ConfirmDialog from '../components/common/ConfirmDialog';
+import Modal from '../components/common/Modal';
 import {
   Calendar,
   Clock,
@@ -12,7 +13,9 @@ import {
   CheckCircle2,
   XCircle,
   Share2,
-  CalendarCheck
+  CalendarCheck,
+  QrCode,
+  Download
 } from 'lucide-react';
 
 export default function EventDetails() {
@@ -21,6 +24,7 @@ export default function EventDetails() {
   const { events, registrations, currentUser, registerForEvent, cancelRegistration, addToast } = useApp();
 
   const [confirmCancelOpen, setConfirmCancelOpen] = useState(false);
+  const [qrModalOpen, setQrModalOpen] = useState(false);
 
   const event = events.find(e => e.id === id);
 
@@ -174,14 +178,24 @@ export default function EventDetails() {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {isRegistered ? (
-              <button
-                className="btn btn-danger-outline"
-                onClick={() => setConfirmCancelOpen(true)}
-                disabled={isPast}
-              >
-                <XCircle size={16} />
-                <span>Cancel Registration</span>
-              </button>
+              <>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => setQrModalOpen(true)}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                >
+                  <QrCode size={16} />
+                  <span>Attendance QR</span>
+                </button>
+                <button
+                  className="btn btn-danger-outline"
+                  onClick={() => setConfirmCancelOpen(true)}
+                  disabled={isPast}
+                >
+                  <XCircle size={16} />
+                  <span>Cancel Registration</span>
+                </button>
+              </>
             ) : (
               <button
                 className="btn btn-primary btn-lg"
@@ -305,6 +319,84 @@ export default function EventDetails() {
         confirmText="Yes, Cancel Registration"
         isDestructive={true}
       />
+
+      {qrModalOpen && (
+        <Modal
+          isOpen={qrModalOpen}
+          onClose={() => setQrModalOpen(false)}
+          title={`Attendance QR: ${event.title}`}
+          maxWidth="460px"
+          footer={
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+              <a
+                href="/attendance-qr-sample.jpg"
+                download={`${event.title.replace(/[^a-zA-Z0-9_-]/g, '_')}_Attendance_QR.jpg`}
+                className="btn btn-secondary btn-sm"
+              >
+                <Download size={14} />
+                <span>Save QR</span>
+              </a>
+              <button className="btn btn-primary btn-sm" onClick={() => setQrModalOpen(false)}>
+                Done
+              </button>
+            </div>
+          }
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', textAlign: 'center' }}>
+            <div
+              style={{
+                padding: '16px',
+                borderRadius: 'var(--radius-lg)',
+                backgroundColor: '#FFFFFF',
+                border: '2px solid var(--card-border)',
+                boxShadow: 'var(--shadow-md)',
+                display: 'inline-flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              <img
+                src="/attendance-qr-sample.jpg"
+                alt="Attendance QR Code"
+                style={{ width: '240px', height: '240px', objectFit: 'contain', display: 'block', borderRadius: 'var(--radius-md)' }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-main)' }}>
+                {currentUser?.name}
+              </div>
+              <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
+                Roll No: <strong>{currentUser?.rollNo}</strong> &nbsp;|&nbsp; Dept: <strong>{currentUser?.department}</strong>
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+                Event Date: {event.date} • {event.venue}
+              </div>
+            </div>
+
+            <div
+              style={{
+                backgroundColor: '#EFF6FF',
+                border: '1px solid #BFDBFE',
+                borderRadius: 'var(--radius-md)',
+                padding: '12px 16px',
+                fontSize: '0.82rem',
+                color: '#1E3A8A',
+                lineHeight: 1.5,
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '8px',
+                textAlign: 'left'
+              }}
+            >
+              <CheckCircle2 size={16} color="#2563EB" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                Present this QR code to the event coordinator at the venue entry. Once scanned, your attendance will be recorded and certificate issued upon completion.
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }
