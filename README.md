@@ -131,11 +131,7 @@ npm run dev
   ```bash
   npm run electron:pack
   ```
-- **Generate Lightweight macOS DMG (< 5 MB)**:
-  ```bash
-  npm run build:dmg
-  ```
-- **Generate Standard Electron Installers**:
+- **Package App Bundle**:
   ```bash
   npm run electron:dist
   ```
