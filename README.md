@@ -4,6 +4,14 @@
 
 ---
 
+## 📥 Download macOS App
+
+Directly download the latest macOS `.dmg` installer:
+
+👉 **[Download EventFlow DMG](https://drive.google.com/drive/folders/1ybhFTnTfMGetwYKkJmW3YkAzyC4GIlyV?usp=sharing)**
+
+---
+
 ## 🚀 What Is In This Project
 
 - **Electron Desktop Shell**: Native desktop application running React with secure IPC boundaries (`contextIsolation: true`, `nodeIntegration: false`).
