@@ -1,9 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import EventCard from '../components/common/EventCard';
-import EmptyState from '../components/common/EmptyState';
-import PageHeader from '../components/common/PageHeader';
+import { EventCard, EmptyState, PageHeader } from '../components';
 import { Search, X } from 'lucide-react';
 
 export default function BrowseEvents() {

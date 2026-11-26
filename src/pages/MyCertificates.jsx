@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import PageHeader from '../components/common/PageHeader';
-import EmptyState from '../components/common/EmptyState';
-import CertificatePreview from '../components/common/CertificatePreview';
+import { PageHeader, EmptyState, CertificatePreview } from '../components';
 import { Award, Download, Eye } from 'lucide-react';
 
 export default function MyCertificates() {

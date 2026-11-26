@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, MapPin, Users, ArrowRight } from 'lucide-react';
-import StatusBadge from './StatusBadge';
+import { StatusBadge } from './UI';
 import { useApp } from '../../context/AppContext';
 
 export default function EventCard({ event, onRegister, showQuickActions = true }) {

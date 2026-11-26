@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import StatusBadge from '../components/common/StatusBadge';
-import ConfirmDialog from '../components/common/ConfirmDialog';
-import Modal from '../components/common/Modal';
+import { StatusBadge, ConfirmDialog, Modal } from '../components';
 import {
   Calendar,
   Clock,

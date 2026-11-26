@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import PageHeader from '../components/common/PageHeader';
+import { PageHeader } from '../components';
 import { Edit3, Save, X } from 'lucide-react';
 
 export default function StudentProfile() {

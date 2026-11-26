@@ -1,8 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import StatCard from '../components/common/StatCard';
-import EventCard from '../components/common/EventCard';
+import { StatCard, EventCard } from '../components';
 import {
   CalendarCheck,
   Award,

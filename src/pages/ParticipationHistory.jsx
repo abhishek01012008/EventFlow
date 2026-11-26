@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import PageHeader from '../components/common/PageHeader';
-import StatusBadge from '../components/common/StatusBadge';
-import EmptyState from '../components/common/EmptyState';
-import CertificatePreview from '../components/common/CertificatePreview';
+import { PageHeader, StatusBadge, EmptyState, CertificatePreview } from '../components';
 import { Award, Search } from 'lucide-react';
 
 export default function ParticipationHistory() {

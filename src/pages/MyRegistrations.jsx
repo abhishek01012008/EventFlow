@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import PageHeader from '../components/common/PageHeader';
-import StatusBadge from '../components/common/StatusBadge';
-import ConfirmDialog from '../components/common/ConfirmDialog';
-import EmptyState from '../components/common/EmptyState';
-import Modal from '../components/common/Modal';
+import { PageHeader, StatusBadge, ConfirmDialog, EmptyState, Modal } from '../components';
 import { Calendar, MapPin, Clock, ArrowRight, XCircle, QrCode, Download, CheckCircle2 } from 'lucide-react';
 import attendanceQrImage from '../assets/attendance-qr-sample.jpg';
 
@@ -34,8 +30,8 @@ export default function MyRegistrations() {
 
   const displayedList =
     activeTab === 'upcoming' ? upcomingRegs :
-    activeTab === 'past' ? pastRegs :
-    cancelledRegs;
+      activeTab === 'past' ? pastRegs :
+        cancelledRegs;
 
   const handleConfirmCancel = () => {
     if (eventToCancel) {
