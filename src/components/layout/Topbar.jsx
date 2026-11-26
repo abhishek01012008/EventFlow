@@ -32,9 +32,7 @@ export default function Topbar() {
     if (path.includes('/student/dashboard')) return 'Student Dashboard';
     if (path.includes('/events/')) return 'Event Overview & Registration';
     if (path === '/events') return 'Explore Events';
-    if (path.includes('/student/registrations')) return 'My Registrations';
-    if (path.includes('/student/history')) return 'Participation History';
-    if (path.includes('/student/certificates')) return 'Official Certificates';
+    if (path.includes('/student/activities')) return 'My Registrations & Activities';
     if (path.includes('/student/profile')) return 'My Profile';
     return 'EventFlow Student Portal';
   };

@@ -5,8 +5,6 @@ import {
   LayoutDashboard,
   Compass,
   CalendarCheck,
-  History,
-  Award,
   User,
   GraduationCap
 } from 'lucide-react';
@@ -39,18 +37,10 @@ export default function Sidebar() {
           <Compass className="icon" />
           <span>Browse Events</span>
         </NavLink>
-        <NavLink to="/student/registrations" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+        <NavLink to="/student/activities" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
           <CalendarCheck className="icon" />
-          <span>My Registrations</span>
+          <span>My Activities</span>
           {myRegisteredCount > 0 && <span className="badge">{myRegisteredCount}</span>}
-        </NavLink>
-        <NavLink to="/student/history" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-          <History className="icon" />
-          <span>Participation History</span>
-        </NavLink>
-        <NavLink to="/student/certificates" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-          <Award className="icon" />
-          <span>My Certificates</span>
         </NavLink>
         <NavLink to="/student/profile" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
           <User className="icon" />

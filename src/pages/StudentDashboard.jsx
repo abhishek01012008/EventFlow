@@ -198,7 +198,7 @@ export default function StudentDashboard() {
               <button
                 className="btn btn-secondary"
                 style={{ justifyContent: 'flex-start', width: '100%' }}
-                onClick={() => navigate('/student/registrations')}
+                onClick={() => navigate('/student/activities?tab=upcoming')}
               >
                 <CalendarCheck size={16} color="#2563EB" />
                 <span>Check My Active Registrations</span>
@@ -206,7 +206,7 @@ export default function StudentDashboard() {
               <button
                 className="btn btn-secondary"
                 style={{ justifyContent: 'flex-start', width: '100%' }}
-                onClick={() => navigate('/student/certificates')}
+                onClick={() => navigate('/student/activities?tab=certificates')}
               >
                 <Award size={16} color="#8B5CF6" />
                 <span>Download My Official Certificates</span>
